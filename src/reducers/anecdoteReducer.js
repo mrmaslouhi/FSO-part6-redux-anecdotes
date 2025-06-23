@@ -40,8 +40,11 @@ export const makeAnecdote = anecdote => {
   }
 }
 
-export function incrementVotes(id) {
-      const votedAnecdote = state.find(a => a.id === action.payload)
-      votedAnecdote.votes += 1
+export const incrementVotes = (id) => {
+    return async dispatch => {
+      await anecdoteService.incrementVote(id)
+      const anecdotes = await anecdoteService.getAll()
+      dispatch(setAnecdotes(anecdotes))
+    }
 }
 export default anecdoteSlice.reducer

@@ -15,6 +15,12 @@ const postNewAnecdote = async (anecdote) => {
   return response.data
 }
 
-const incrementVotes = async ()
+const incrementVote = async (id) => {
+  const anecdotes = await getAll()
+  const votedAnecdote = anecdotes.find(a => a.id === id)
+  votedAnecdote.votes += 1
+  const response = await axios.put(`${baseUrl}/${id}`, votedAnecdote)
+  return response.data
+}
 
-export default { getAll, postNewAnecdote }
+export default { getAll, postNewAnecdote, incrementVote }
