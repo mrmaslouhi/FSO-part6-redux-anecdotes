@@ -15,4 +15,6 @@ const postNewAnecdote = async (anecdote) => {
   return response.data
 }
 
+const incrementVotes = async ()
+
 export default { getAll, postNewAnecdote }
